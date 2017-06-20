@@ -4,6 +4,7 @@ settingsView = null
 statusView = null
 
 PackageManager = require './package-manager'
+path = require 'path'
 packageManager = null
 
 SnippetsProvider =
@@ -27,6 +28,8 @@ openPanel = (settingsView, panelName, uri) ->
 
 module.exports =
   activate: ->
+    # debugger
+    process.env.ATOM_RESOURCE_PATH = path.join(process.execPath, '..', '..', '..', '..', '..', 'Resources', 'app')
     atom.workspace.addOpener (uri) =>
       if uri.startsWith(configUri)
         if not settingsView? or settingsView.destroyed
